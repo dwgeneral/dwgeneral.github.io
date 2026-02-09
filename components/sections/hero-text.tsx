@@ -1,10 +1,23 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { SplineScene } from "@/components/ui/spline";
+import dynamic from "next/dynamic";
+
+// 动态导入 3D 场景，避免阻塞首屏渲染
+const SplineScene = dynamic(
+  () => import("@/components/ui/spline").then((mod) => mod.SplineScene),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full flex items-center justify-center bg-muted/30 rounded-lg">
+        <div className="animate-pulse text-muted-foreground text-sm">Loading 3D...</div>
+      </div>
+    ),
+  }
+);
 
 interface HeroTextProps {
   description: string;
@@ -14,8 +27,36 @@ interface HeroTextProps {
   };
 }
 
+// 使用 React.memo 减少不必要的重渲染
+const RotatingText = ({ texts }: { texts: string[] }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % texts.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [texts.length]);
+
+  return (
+    <span className="relative flex overflow-hidden h-[1.2em] md:h-[1.1em]">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={index}
+          className="absolute font-semibold text-foreground"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -50, opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          {texts[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+};
+
 export function HeroText({ description, cta }: HeroTextProps) {
-  const [titleNumber, setTitleNumber] = useState(0);
   const rotatingTexts = useMemo(
     () => [
       "AI Native 产品践行者",
@@ -26,17 +67,6 @@ export function HeroText({ description, cta }: HeroTextProps) {
     []
   );
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (titleNumber === rotatingTexts.length - 1) {
-        setTitleNumber(0);
-      } else {
-        setTitleNumber(titleNumber + 1);
-      }
-    }, 2000);
-    return () => clearTimeout(timeoutId);
-  }, [titleNumber, rotatingTexts]);
-
   return (
     <section className="min-h-[calc(100vh-4rem)] flex flex-col justify-center px-6 py-12 lg:px-12">
       <div className="mx-auto max-w-6xl w-full">
@@ -44,36 +74,11 @@ export function HeroText({ description, cta }: HeroTextProps) {
           {/* Left - Text Animation */}
           <div className="flex flex-col gap-8">
             <div>
-              {/* <p className="text-sm font-medium tracking-wide text-muted-foreground uppercase mb-2">
-                Ryan
-              </p> */}
               <h1 className="text-4xl md:text-7xl max-w-2xl tracking-tighter font-regular">
-                <span className="text-spektr-cyan-50">Hi, 我是 Ryan</span>
+                <span className="text-foreground">Hi, 我是 Ryan</span>
               </h1>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tight font-medium">
-                <span className="relative flex overflow-hidden h-[1.2em] md:h-[1.1em]">
-                  {rotatingTexts.map((title, index) => (
-                    <motion.span
-                      key={index}
-                      className="absolute font-semibold text-foreground"
-                      initial={{ opacity: 0, y: -50 }}
-                      transition={{ type: "spring", stiffness: 50 }}
-                      animate={
-                        titleNumber === index
-                          ? {
-                              y: 0,
-                              opacity: 1,
-                            }
-                          : {
-                              y: titleNumber > index ? -50 : 50,
-                              opacity: 0,
-                            }
-                      }
-                    >
-                      {title}
-                    </motion.span>
-                  ))}
-                </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tight font-medium mt-2">
+                <RotatingText texts={rotatingTexts} />
               </h1>
             </div>
 
@@ -98,7 +103,7 @@ export function HeroText({ description, cta }: HeroTextProps) {
             </div>
           </div>
 
-          {/* Right - 3D Spline Scene */}
+          {/* Right - 3D Spline Scene (懒加载) */}
           <div className="flex items-center justify-center lg:justify-end">
             <div className="relative w-full max-w-[500px] h-[400px] lg:h-[500px]">
               <SplineScene 
