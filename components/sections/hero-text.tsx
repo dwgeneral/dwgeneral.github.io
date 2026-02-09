@@ -48,7 +48,7 @@ export function HeroText({ description, cta }: HeroTextProps) {
                 Ryan
               </p> */}
               <h1 className="text-4xl md:text-7xl max-w-2xl tracking-tighter font-regular">
-                <span className="text-spektr-cyan-50">你好, 我是 Ryan</span>
+                <span className="text-spektr-cyan-50">Hi, 我是 Ryan</span>
               </h1>
               <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tight font-medium">
                 <span className="relative flex overflow-hidden h-[1.2em] md:h-[1.1em]">
