@@ -1,36 +1,217 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ryan 个人网站
 
-## Getting Started
+一个优雅、现代的个人展示网站，采用 **Markdown 驱动内容 (Markdown-as-CMS)** 的架构。
 
-First, run the development server:
+🔗 **在线预览**: (部署后可添加链接)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 技术栈
+
+- **Next.js 16+** (App Router) - React 全栈框架
+- **TypeScript** - 类型安全
+- **Tailwind CSS v4** - 原子化 CSS
+- **Framer Motion** - 流畅的动画效果
+- **gray-matter + remark** - Markdown 解析
+
+---
+
+## 项目结构
+
+```
+keepsurfing/
+├── app/                    # Next.js App Router
+│   ├── page.tsx           # 首页
+│   ├── about/             # 关于页面
+│   ├── experience/        # 经历页面
+│   ├── projects/          # 项目页面
+│   ├── blog/              # 博客列表
+│   ├── blog/[slug]/       # 博客文章详情
+│   ├── contact/           # 联系页面
+│   ├── api/contact/       # 联系表单 API
+│   └── layout.tsx         # 根布局
+├── components/            # React 组件
+│   ├── navbar.tsx         # 导航栏
+│   ├── footer.tsx         # 页脚
+│   └── sections/          # 页面区块组件
+├── content/               # Markdown 内容（CMS）
+│   ├── profile.md         # 核心内容文件
+│   └── blog/              # 博客文章
+├── lib/                   # 工具函数
+│   ├── markdown.ts        # Markdown 解析
+│   └── utils.ts           # 通用工具
+├── public/                # 静态资源
+│   └── avatar.svg         # 头像
+└── dist/                  # 构建输出目录
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 内容管理
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 核心内容文件
 
-## Learn More
+所有网站内容都通过 `content/profile.md` 管理，采用 YAML Frontmatter 格式：
 
-To learn more about Next.js, take a look at the following resources:
+```yaml
+---
+# 基础信息
+name: "Ryan"
+title: "AI 产品经理"
+email: "your@email.com"
+...
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Hero 区域
+hero:
+  greeting: "你好，我是 Ryan"
+  tagline: "..."
+  ...
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 关于我
+about:
+  title: "关于我"
+  content: |
+    Markdown 格式的内容...
 
-## Deploy on Vercel
+# 工作经历
+experience:
+  title: "工作经历"
+  items:
+    - company: "..."
+      role: "..."
+      ...
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 项目经历
+projects:
+  title: "项目经历"
+  featured: [...]
+  other: [...]
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 技能树
+skills:
+  title: "技能树"
+  categories: [...]
+
+# 联系方式
+contact:
+  title: "联系我"
+  email: "..."
+  ...
+---
+```
+
+### 博客文章
+
+博客文章存放在 `content/blog/` 目录下，每篇文章是一个 Markdown 文件：
+
+```markdown
+---
+title: "文章标题"
+date: "2025-02-08"
+excerpt: "文章摘要"
+tags: ["标签1", "标签2"]
+---
+
+文章内容...
+```
+
+---
+
+## 更新网站内容
+
+### 修改个人信息
+
+1. 编辑 `content/profile.md` 文件
+2. 重新构建部署
+
+### 添加博客文章
+
+1. 在 `content/blog/` 目录下创建新的 `.md` 文件
+2. 添加 Frontmatter 和正文内容
+3. 重新构建部署
+
+---
+
+## 本地开发
+
+```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm run dev
+
+# 构建生产版本
+npm run build
+
+# 预览生产构建
+npx serve dist
+```
+
+---
+
+## 部署
+
+### 部署到 Vercel（推荐）
+
+1. 将代码推送到 GitHub
+2. 在 Vercel 导入项目
+3. 自动部署
+
+### 部署到静态托管
+
+```bash
+npm run build
+# 将 dist/ 目录部署到任何静态托管服务
+```
+
+---
+
+## 联系表单配置
+
+联系表单默认只记录日志。要启用真实邮件发送，需要：
+
+1. 注册 [Resend](https://resend.com) 或其他邮件服务
+2. 在 `app/api/contact/route.ts` 中配置 API 密钥
+3. 重新部署
+
+---
+
+## 自定义
+
+### 修改配色
+
+编辑 `app/globals.css` 中的 CSS 变量：
+
+```css
+:root {
+  --background: #fafaf9;
+  --foreground: #1c1917;
+  --primary: #44403c;
+  ...
+}
+```
+
+### 修改头像
+
+替换 `public/avatar.svg` 文件，或使用真实照片：
+
+1. 将照片放入 `public/` 目录
+2. 在 `content/profile.md` 中添加头像路径
+3. 更新组件显示头像
+
+---
+
+## 特性
+
+- ✅ 响应式设计，支持移动端
+- ✅ 流畅的页面过渡动画
+- ✅ SEO 优化
+- ✅ 博客功能
+- ✅ 联系表单
+- ✅ Markdown 驱动内容
+- ✅ 浅色主题（可扩展深色主题）
+
+---
+
+Made with AI assistance 🚀
