@@ -49,10 +49,6 @@ about:
 core_competencies:
   title: "核心竞争力"
   items:
-    - title: "AI 流程重构能力"
-      icon: "sparkles"
-      description: "擅长用 AI 技术改造传统业务流，在视频剪辑、智能客服、内容运营等场景建立标准化的 AI 工作流，实现效率跃升"
-
     - title: "全栈闭环落地能力"
       icon: "code"
       description: "具备从需求分析、产品设计到技术实现、开发落地的全链路能力，熟练使用 AI Coding 工具独立完成产品从 0 到 1 的构建"
@@ -68,6 +64,14 @@ core_competencies:
     - title: "商业化与创业"
       icon: "trending-up"
       description: "具备跑通 AI 应用商业闭环的能力，能从业务痛点中挖掘 AI 机会点并验证价值"
+
+    - title: "AI 流程重构能力"
+      icon: "sparkles"
+      description: "擅长用 AI 技术改造传统业务流，在视频剪辑、智能客服、内容运营等场景建立标准化的 AI 工作流，实现效率跃升"
+
+    - title: "持续学习能力"
+      icon: "book"
+      description: "永远对新鲜事物有探索欲，坚信 AGI 技术会让我们的生活变得更美好，并愿意为之添砖加瓦"
 
 # 工作经历
 experience:
@@ -95,8 +99,8 @@ experience:
 
     - company: "Grab"
       role: "Senior Software Engineer"
-      period: "2021.08 – 2023.12"
-      location: "新加坡/远程"
+      period: "2021.08 – 2024.03"
+      location: "北京"
       description: "参与 Shared Menu 统一菜单平台架构设计与开发，负责亿级商品数据同步、分布式一致性方案。"
       highlights:
         - "亿级商品数据实时同步方案设计"
@@ -115,7 +119,7 @@ experience:
 
     - company: "磁力信科技"
       role: "后端技术负责人"
-      period: "2014.10 – 2020.01"
+      period: "2014.10 – 2020.06"
       location: "北京"
       description: "带领 10 人团队将产品从 0 做到百万 DAU，主导 k8s 基础平台建设、直播/支付/课程系统设计。"
       highlights:
@@ -127,6 +131,19 @@ experience:
 projects:
   title: "项目经历"
   featured:
+    - name: "FastClaw"
+      tagline: "零门槛的可视化 AI Agent 构建与深度协同工作空间"
+      period: "2026.02 - 至今 (立项中)"
+      role: "独立开发 / 产品架构师"
+      company: "个人项目"
+      description: "旨在解决 AI Agent 配置复杂、黑盒运行的问题。通过直观的可视化画布，让用户像搭积木一样编排 Agent 的思考逻辑、工具集和记忆库，并提供一个支持实时人机协作的沉浸式工作环境。"
+      highlights:
+        - "可视化编排引擎：设计一套直观的逻辑画布，支持用户无需编写复杂代码即可定义 Agent 的 ReAct 链路、知识引用策略及工具调用优先级"
+        - "沉浸式协作空间：打破单一的聊天框限制，构建一个共享的画布/文档环境，实现人与 Agent 针对代码、设计图或复杂任务的实时协同与反馈"
+        - "原生支持 OpenClaw：作为 OpenClaw 生态的旗舰级 UI 实现，提供深度的框架集成，让高性能的 Agent 能力通过交互即刻触达终端用户"
+      tags: ["AI Agent", "可视化编程", "人机协同", "OpenClaw Ecosystem"]
+      featured: true
+
     - name: "幕语 AI"
       tagline: "AI Native 求职面试辅导平台"
       period: "2025.10 - 至今"
@@ -140,9 +157,48 @@ projects:
       tags: ["AI Native", "Full Stack", "AI Coding", "求职"]
       featured: true
 
-    - name: "AI 医疗科普视频智能剪辑平台"
+    - name: "AI 智能宠物喂食器"
+      tagline: "硬件端侧 AI 视觉算法重构与性能极致优化"
+      period: "2025.06 - 2025.09"
+      role: "项目负责人 / 架构重构与优化"
+      company: "轻松集团"
+      description: "在硬件产品交付前的关键博弈期，通过架构重构解决核心 AI 视觉检测（空碗检测、猫只进出频率）的准确性与低延迟性能瓶颈。"
+      highlights:
+        - "紧急架构重构：带领 5 人研发团队在 2 周内完成从模型推理架构到数据传输链路的全面重构，确保项目如期交付"
+        - "性能极致优化：深度优化端侧模型部署逻辑，解决高并发下的实时性瓶颈，将核心检测准确率提升至量产标准"
+        - "产品策略博弈：与业务部门进行深度协作，通过降级次要功能确保核心检测功能的极高稳定性，项目综合考评 S"
+      tags: ["AI 视觉", "端侧模型", "性能优化", "架构重构"]
+      featured: true
+
+    - name: "保险销售智能客服 Agent"
+      tagline: "RAG + ReAct 驱动的高转化率 AI 专家系统"
+      period: "2024.10 - 2025.01"
+      role: "项目负责人及 Agent 开发"
+      company: "轻松集团"
+      description: "针对保险行业咨询效率低、培训成本高的痛点，构建具备专业知识库与复杂意图理解能力的 AI 智能客服专家。"
+      highlights:
+        - "核心架构设计：设计并落地 RAG + ReAct 工作流，显著提升了复杂保险知识问答的准确性与语义一致性"
+        - "全链路产品规划：负责从知识库动态构建、多轮对话流到风险提示识别的闭环产品设计，实现业务场景的精准覆盖"
+        - "业务指标跃升：实现客服人力成本大幅下降，用户提问命中率与响应速度显著提升，有效赋能一线业务"
+      tags: ["RAG", "ReAct", "Agent", "智能客服"]
+      featured: true
+
+    - name: "企业内部 AI 创作平台"
+      tagline: "基于 Dify 的企业级 AI 应用矩阵与内容工业化平台"
+      period: "2024.03 - 2024.09"
+      role: "AI 技术探索与核心开发"
+      company: "轻松集团"
+      description: "构建公司内部统一的 AI 能力底座，赋能业务人员通过可视化画布快速构建 AI Agent，推动内容生产的全面智能化。"
+      highlights:
+        - "平台二次开发：基于 Dify 深度定制内部创作平台，实现可视化工作流、应用商店及全方位的安全审计能力"
+        - "全自动生产链路：利用 ComfyUI 与 LivePortrait 搭建自动化音视频转绘及内容创作流，助力运营团队产出多款爆款视频"
+        - "规模化落地：平台支撑上百个业务 Agent 的快速构建与运行，极大降低了各业务线的 AI 接入门槛与研发成本"
+      tags: ["Dify", "ComfyUI", "AI 平台", "Multi-Agent"]
+      featured: true
+
+    - name: "AI 视频智能剪辑平台"
       tagline: "千万级年收益的 AI 视频生产基础设施"
-      period: "2024.06 - 2024.09"
+      period: "2025.01 - 2025.07"
       role: "AI 技术负责人及核心开发"
       company: "轻松集团"
       description: "用 AI 技术改造传统视频剪辑流程，为公司在此业务上节省了数千万的成本。"
@@ -154,25 +210,20 @@ projects:
       tags: ["AI 视频", "LLM", "CV", "ASR", "RAG"]
       featured: true
 
+    - name: "基于飞书多维表格的AI内容生产系统"
+      tagline: "全链路 AI 驱动的自媒体内容工业化生产"
+      period: "2025.11 - 2025.11"
+      role: "联合创始人 / 产品技术负责人"
+      company: "北京候鸟智迁科技有限公司"
+      description: "利用飞书多维表格作为数据中台，接入 LLM 构建了一套从选题发现到自动发布的自媒体全流程 AI 生产线，实现了内容生产的标准化与规模化。"
+      highlights:
+        - "全流程自动化重构：跑通了自媒体从内容选题、爆款结构拆解、爆款内容仿写到最终自动排版发布的全生命周期 AI 流转"
+        - "工业化生产效能：将原本依赖人工经验的感性创作转化为可量化的 AI 工作流，内容产出效率提升 10 倍以上"
+        - "爆款逻辑数字化：利用 AI 对成千上万条爆款案例进行深度特征提取，总结出高转化的内容模板并实现在线自动调用"
+      tags: ["AI 自动化", "飞书多维表格", "LLM", "内容运营"]
+      featured: true
+
   other:
-    - name: "露露凯蒂 - 宠物喂食器 AI 视觉检测"
-      period: "2025.07 - 2025.09"
-      role: "项目负责人"
-      description: "带领 5 名 AI 研发工程师，在 2 周内对 AI 视觉模块进行架构重构和性能优化，确保项目如期高质量上线。"
-      tags: ["AI 视觉", "端侧模型", "性能优化"]
-
-    - name: "InsureBot 保险销售智能客服"
-      period: "2024.10 - 2025.01"
-      role: "项目负责人及 Agent 开发"
-      description: "设计 RAG + ReAct 工作流，构建智能保险客服系统，显著降低人力客服成本并提高转化率。"
-      tags: ["RAG", "ReAct", "Agent", "智能客服"]
-
-    - name: "企业内部 AI 创作平台"
-      period: "2024.03 - 2024.09"
-      role: "AI 技术探索与核心开发"
-      description: "基于 Dify 二次开发构建企业内部 AI 应用创作平台，部署上百个 AI Agent，成为公司 AI 落地的统一平台。"
-      tags: ["Dify", "ComfyUI", "AI 平台", "Agent"]
-
     - name: "Shared Menu - 统一菜单平台"
       period: "2022.05 - 2022.09"
       role: "架构设计与开发"
